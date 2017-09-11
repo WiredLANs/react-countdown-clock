@@ -162,7 +162,7 @@ ReactCountdownClock = CreateReactClass
       @props.fontSize
 
   _drawIcon: ->
-    @_icon.clearRect(0,0,canvas.width,canvas.height);
+    @_icon.clearRect(0,0,@props.size,@props.size);
     @_icon.font='30px FontAwesome';
     @_icon.fillText('\uF017',20,50)
 
