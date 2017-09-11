@@ -37,6 +37,7 @@ ReactCountdownClock = CreateReactClass
     @_setScale()
     @_setupCanvases()
     @_drawBackground()
+    @_drawIcon()
     @_drawTimer()
     @_startTimer() unless @props.paused
 
@@ -63,6 +64,9 @@ ReactCountdownClock = CreateReactClass
 
   _setupCanvases: ->
     @_background = @refs.background.getContext '2d'
+    @_icon = @refs.background.getContext '2d'
+    @_icon.textAlign = 'center'
+    @_icon.textBaseline = 'middle'
     @_timer = @refs.timer.getContext '2d'
     @_timer.textAlign = 'center'
     @_timer.textBaseline = 'middle'
@@ -157,6 +161,11 @@ ReactCountdownClock = CreateReactClass
     else
       @props.fontSize
 
+  _drawIcon: ->
+    @_icon.clearRect(0,0,canvas.width,canvas.height);
+    @_icon.font='30px FontAwesome';
+    @_icon.fillText('\uF017',20,50)
+
   _drawTimer: ->
     percent = @_fraction * @_seconds + 1.5
     formattedTime = @_formattedTime()
@@ -181,6 +190,7 @@ ReactCountdownClock = CreateReactClass
     <div ref='component' className='react-countdown-clock'>
       <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
       <canvas ref='backgroundMiddle' style={ position: 'absolute' } width={@props.size - 26} height={@props.size - 26}></canvas>
+      <canvas ref='icon' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
       <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
     </div>
 
