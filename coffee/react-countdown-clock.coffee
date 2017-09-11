@@ -55,8 +55,8 @@ ReactCountdownClock = CreateReactClass
         @_radius / 1.8
 
   _calculateTick: ->
-    # Tick period (milleseconds) needs to be fast for smaller time periods and slower
-    # for longer ones. This provides smoother rendering. It should never exceed 1 second.
+# Tick period (milleseconds) needs to be fast for smaller time periods and slower
+# for longer ones. This provides smoother rendering. It should never exceed 1 second.
     tickScale = 1.8
     tick = @_seconds * tickScale
     if tick > 1000 then 1000 else tick
@@ -70,7 +70,7 @@ ReactCountdownClock = CreateReactClass
       @refs.component.addEventListener 'click', @props.onClick
 
   _startTimer: ->
-    # Give it a moment to collect it's thoughts for smoother render
+# Give it a moment to collect it's thoughts for smoother render
     @_timeoutIds.push(setTimeout ( => @_tick() ), 200)
 
   _pauseTimer: ->
@@ -169,8 +169,9 @@ ReactCountdownClock = CreateReactClass
     @_timer.fill()
 
     # Timer
-    @_timer.globalAlpha = @props.alpha
-    @_timer.fillStyle = @props.color
+    #@_timer.globalAlpha = @props.alpha
+    @_timer.globalAlpha = 1
+    @_timer.fillStyle = "#92D050"
     @_timer.beginPath()
     @_timer.arc @_radius, @_radius, @_radius,      Math.PI * 1.5,     Math.PI * percent, false
     @_timer.arc @_radius, @_radius, @_innerRadius, Math.PI * percent, Math.PI * 1.5,     true
@@ -178,8 +179,9 @@ ReactCountdownClock = CreateReactClass
     @_timer.fill()
 
   render: ->
-    <div ref='component' className="react-countdown-clock">
-      <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+    <div ref='component' className='react-countdown-clock'>
+    <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+    <canvas ref='backgroundMiddle' style={ position: 'absolute' } width={@props.size - 26} height={@props.size - 26}></canvas>
       <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
     </div>
 
@@ -198,6 +200,7 @@ ReactCountdownClock.propTypes =
   paused: PropTypes.bool
   pausedText: PropTypes.string
   backgroundColor: React.PropTypes.string
+  backgroundColorMiddle: React.PropTypes.string
   fontColor: React.PropTypes.string
 
 ReactCountdownClock.defaultProps =
