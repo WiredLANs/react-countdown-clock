@@ -63,6 +63,7 @@ ReactCountdownClock = CreateReactClass
 
   _setupCanvases: ->
     @_background = @refs.background.getContext '2d'
+    @_backgroundMiddle = @refs.background.getContext '2d'
     @_timer = @refs.timer.getContext '2d'
     @_timer.textAlign = 'center'
     @_timer.textBaseline = 'middle'
@@ -108,6 +109,7 @@ ReactCountdownClock = CreateReactClass
 
   _clearBackground: ->
     @_background.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+    @_backgroundMiddle.clearRect 0, 0, @refs.timer.width, @refs.timer.height
 
   _clearTimer: ->
     @_timer.clearRect 0, 0, @refs.timer.width, @refs.timer.height
