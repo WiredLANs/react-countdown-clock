@@ -114,12 +114,23 @@ ReactCountdownClock = CreateReactClass
 
   _drawBackground: ->
     @_background.beginPath()
-    @_background.globalAlpha = @props.alpha / 3
+    #@_background.globalAlpha = @props.alpha / 3
+    @_background.globalAlpha = 1
     @_background.fillStyle = @props.backgroundColor or @props.color
     @_background.arc @_radius, @_radius,      @_radius,           0, Math.PI * 2, false
     @_background.arc @_radius, @_radius, @_innerRadius, Math.PI * 2,           0, true
     @_background.closePath()
     @_background.fill()
+
+  _drawBackgroundMiddle: ->
+    @_backgroundMiddle.beginPath()
+    #@_backgroundMiddle.globalAlpha = @props.alpha / 3
+    @_backgroundMiddle.globalAlpha = 1
+    @_backgroundMiddle.fillStyle = @props.backgroundColorMiddle
+    @_backgroundMiddle.arc @_radius, @_radius,      @_radius,           0, Math.PI * 2, false
+    @_backgroundMiddle.arc @_radius, @_radius, @_innerRadius, Math.PI * 2,           0, true
+    @_backgroundMiddle.closePath()
+    @_backgroundMiddle.fill()
 
   _formattedTime: ->
     decimals = (@_seconds <= 9.9 && @props.showMilliseconds) ? 1 : 0
@@ -157,6 +168,13 @@ ReactCountdownClock = CreateReactClass
     else
       @props.fontSize
 
+    render: ->
+    <div ref='component' className='react-countdown-clock'>
+    <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+    <canvas ref='backgroundMiddle' style={ position: 'absolute' } width={@props.size - 26} height={@props.size - 26}></canvas>
+    <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+    </div>
+
   _drawTimer: ->
     percent = @_fraction * @_seconds + 1.5
     formattedTime = @_formattedTime()
@@ -169,21 +187,15 @@ ReactCountdownClock = CreateReactClass
     @_timer.fill()
 
     # Timer
-    #@_timer.globalAlpha = @props.alpha
-    @_timer.globalAlpha = 1
-    @_timer.fillStyle = "#92D050"
+    @_timer.globalAlpha = @props.alpha
+    @_timer.fillStyle = @props.color
     @_timer.beginPath()
     @_timer.arc @_radius, @_radius, @_radius,      Math.PI * 1.5,     Math.PI * percent, false
     @_timer.arc @_radius, @_radius, @_innerRadius, Math.PI * percent, Math.PI * 1.5,     true
     @_timer.closePath()
     @_timer.fill()
 
-  render: ->
-    <div ref='component' className='react-countdown-clock'>
-    <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
-    <canvas ref='backgroundMiddle' style={ position: 'absolute' } width={@props.size - 26} height={@props.size - 26}></canvas>
-      <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
-    </div>
+
 
 ReactCountdownClock.propTypes =
   seconds: PropTypes.number
