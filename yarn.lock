@@ -1664,6 +1664,13 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-countdown-clock@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-countdown-clock/-/react-countdown-clock-2.0.0.tgz#640923feaa0fd53c84c19985f0f4e1bec5761f2b"
+  dependencies:
+    create-react-class "^15.5.2"
+    prop-types "^15.5.8"
+
 react@^15.6.0:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
