@@ -170,13 +170,6 @@ ReactCountdownClock = CreateReactClass
     else
       @props.fontSize
 
-    render: ->
-    <div ref='component' className='react-countdown-clock'>
-    <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
-    <canvas ref='backgroundMiddle' style={ position: 'absolute' } width={@props.size - 26} height={@props.size - 26}></canvas>
-    <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
-    </div>
-
   _drawTimer: ->
     percent = @_fraction * @_seconds + 1.5
     formattedTime = @_formattedTime()
@@ -197,7 +190,12 @@ ReactCountdownClock = CreateReactClass
     @_timer.closePath()
     @_timer.fill()
 
-
+  render: ->
+    <div ref='component' className='react-countdown-clock'>
+    <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+    <canvas ref='backgroundMiddle' style={ position: 'absolute' } width={@props.size - 26} height={@props.size - 26}></canvas>
+    <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+    </div>
 
 ReactCountdownClock.propTypes =
   seconds: PropTypes.number
