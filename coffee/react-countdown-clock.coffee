@@ -75,7 +75,10 @@ ReactCountdownClock = CreateReactClass
   _updateCanvas: ->
     @_clearTimer()
     @_drawTimer()
+    @_clearTimerText()
     @_drawTimerText()
+    @_clearIcon()
+    @_drawIcon()
 
   _setScale: ->
     @_radius      = @props.size / 2
@@ -138,6 +141,8 @@ ReactCountdownClock = CreateReactClass
         @_seconds = 0
         @_handleComplete()
         @_clearTimer()
+        @_clearTimerText()
+        @_clearIcon()
       else
         @_updateCanvas()
         @_tick()
@@ -152,7 +157,11 @@ ReactCountdownClock = CreateReactClass
 
   _clearTimer: ->
     @_timer.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+
+  _clearTimerText: ->
     @_timerText.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+
+  _clearIcon: ->
     @_icon.clearRect 0, 0, @refs.timer.width, @refs.timer.height
 
   _drawBackground: ->
