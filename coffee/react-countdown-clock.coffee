@@ -241,6 +241,7 @@ class ReactCountdownClock
     @_timer.closePath()
     @_timer.fill()
 
+export default ReactCountdownClock
 
   render: ->
     <div ref='component' className='react-countdown-clock'>
@@ -249,3 +250,5 @@ class ReactCountdownClock
       <canvas ref='timerText' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
       <canvas ref='icon' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
     </div>
+
+module.exports = ReactCountdownClock
