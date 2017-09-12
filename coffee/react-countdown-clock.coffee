@@ -23,8 +23,8 @@ ReactCountdownClock = CreateReactClass
     timeFormat: React.PropTypes.string
     onComplete: React.PropTypes.func
     showMilliseconds: PropTypes.bool
-#    paused: PropTypes.bool
-#    pausedText: PropTypes.string
+    paused: PropTypes.bool
+    pausedText: PropTypes.string
     backgroundColor: React.PropTypes.string
     backgroundColorEdge: React.PropTypes.string
     fontColor: React.PropTypes.string
@@ -40,7 +40,7 @@ ReactCountdownClock = CreateReactClass
     font: 'Arial'
     showMilliseconds: true
     restartOnNewProps: true
-#    paused: false
+    paused: false
 
   componentWillReceiveProps: (props) ->
     if @props.restartOnNewProps
@@ -52,9 +52,9 @@ ReactCountdownClock = CreateReactClass
       @_drawBackground()
       @_updateCanvas()
 
-#    if props.paused != @props.paused
-#      @_startTimer() if !@props.paused
-#      @_pauseTimer() if @props.paused
+    if props.paused != @props.paused
+      @_startTimer() if !@props.paused
+      @_pauseTimer() if @props.paused
 
   componentDidMount: ->
     @_seconds = @props.seconds
@@ -117,9 +117,9 @@ ReactCountdownClock = CreateReactClass
 # Give it a moment to collect it's thoughts for smoother render
     @_timeoutIds.push(setTimeout ( => @_tick() ), 200)
 
-#  _pauseTimer: ->
-#    @_stopTimer()
-#    @_updateCanvas()
+  _pauseTimer: ->
+    @_stopTimer()
+    @_updateCanvas()
 
   _stopTimer: ->
     for timeout in @_timeoutIds
@@ -141,8 +141,8 @@ ReactCountdownClock = CreateReactClass
         @_seconds = 0
         @_handleComplete()
         @_clearTimer()
-        #@_clearTimerText()
-        #@_clearIcon()
+        @_clearTimerText()
+        @_clearIcon()
       else
         @_updateCanvas()
         @_tick()
