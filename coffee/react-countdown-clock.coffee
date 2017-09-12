@@ -193,10 +193,9 @@ ReactCountdownClock = CreateReactClass
 
   render: ->
     <div ref='component' className='react-countdown-clock'>
-      <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
-      <canvas ref='backgroundMiddle' style={ position: 'absolute' } width={@props.size - 26} height={@props.size - 26}></canvas>
-      <canvas ref='icon' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
       <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+      <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+      <canvas ref='icon' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
     </div>
 
 ReactCountdownClock.propTypes =
