@@ -163,9 +163,10 @@ ReactCountdownClock = CreateReactClass
 
   _drawIcon: ->
     @_icon.clearRect(107,0,50,50);
+    @_icon.globalAlpha = 1
     @_icon.fillStyle = @props.fontColor or @props.color
     @_icon.font='32px FontAwesome';
-    @_icon.fillText('\uF017',100,30)
+    @_icon.fillText('\uF017',67,30)
 
   _drawTimer: ->
     percent = @_fraction * @_seconds + 1.5
