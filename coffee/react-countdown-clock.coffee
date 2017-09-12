@@ -1,13 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+React  = require 'react'
+PropTypes = require 'prop-types'
+CreateReactClass = require 'create-react-class'
 
-module.exports = React.createClass
-  _seconds: 0
-  _radius: null
-  _fraction: null
-  _content: null
-  _canvas: null
-  _timeoutIds: []
+class ReactCountdownClock
+  constructor: (props) ->
+    _seconds: 0
+    _radius: null
+    _fraction: null
+    _content: null
+    _canvas: null
+    _timeoutIds: []
 
   displayName: 'ReactCountdownClock'
 
