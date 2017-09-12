@@ -36,6 +36,6 @@
   "dependencies": {
     "create-react-class": "^15.5.2",
     "prop-types": "^15.5.10",
-    "react-countdown-clock": "^2.0.0"
+    "react-countdown-clock": "https://github.com/WiredLANs/react-countdown-clock/"
   }
 }

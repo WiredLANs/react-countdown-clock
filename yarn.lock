@@ -1671,6 +1671,14 @@ react-countdown-clock@^2.0.0:
     create-react-class "^15.5.2"
     prop-types "^15.5.8"
 
+"react-countdown-clock@https://github.com/WiredLANs/react-countdown-clock/":
+  version "6.1.7"
+  resolved "https://github.com/WiredLANs/react-countdown-clock/#42183815c7a191fc7ad8990749cb6853148044da"
+  dependencies:
+    create-react-class "^15.5.2"
+    prop-types "^15.5.10"
+    react-countdown-clock "^2.0.0"
+
 react@^15.6.0:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
