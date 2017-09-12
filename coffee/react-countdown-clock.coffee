@@ -118,8 +118,10 @@ ReactCountdownClock = CreateReactClass
 
   _drawBackground: ->
     @_background.beginPath()
-    @_background.globalAlpha = @props.alpha / 3
-    @_background.fillStyle = @props.backgroundColor or @props.color
+    #@_background.globalAlpha = @props.alpha / 3
+    @_background.globalAlpha = 1
+    #@_background.fillStyle = @props.backgroundColor or @props.color
+    @_background.fillStyle = @props.backgroundColorMiddle
     @_background.arc @_radius, @_radius,      @_radius,           0, Math.PI * 2, false
     @_background.arc @_radius, @_radius, @_innerRadius, Math.PI * 2,           0, true
     @_background.closePath()
