@@ -1,9 +1,7 @@
 React  = require 'react'
 PropTypes = require 'prop-types'
-CreateReactClass = require 'create-react-class'
 
-class ReactCountdownClock
-  constructor: (props) ->
+ReactCountdownClock: (props) ->
     _seconds: 0
     _radius: null
     _fraction: null
