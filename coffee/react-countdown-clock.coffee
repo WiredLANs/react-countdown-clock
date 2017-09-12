@@ -172,7 +172,7 @@ ReactCountdownClock = CreateReactClass
       @props.fontSize
 
   _drawIcon: ->
-    @_icon.clearRect(107,0,32,32);
+    @_icon.clearRect(107,0,0,0);
     @_icon.globalAlpha = 1
     @_icon.fillStyle = @props.fontColor or @props.color
     @_icon.font='32px FontAwesome';
