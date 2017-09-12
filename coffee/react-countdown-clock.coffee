@@ -48,7 +48,7 @@ ReactCountdownClock = CreateReactClass
       @_setupTimer()
 
     if props.color != @props.color
-      @_clearBackground()
+      #@_clearBackground()
       @_drawBackground()
       @_updateCanvas()
 
@@ -91,8 +91,8 @@ ReactCountdownClock = CreateReactClass
         @_radius / 1.8
 
   _calculateTick: ->
-# Tick period (milleseconds) needs to be fast for smaller time periods and slower
-# for longer ones. This provides smoother rendering. It should never exceed 1 second.
+    # Tick period (milleseconds) needs to be fast for smaller time periods and slower
+    # for longer ones. This provides smoother rendering. It should never exceed 1 second.
     tickScale = 1.8
     tick = @_seconds * tickScale
     if tick > 1000 then 1000 else tick
@@ -114,22 +114,26 @@ ReactCountdownClock = CreateReactClass
       @refs.component.addEventListener 'click', @props.onClick
 
   _startTimer: ->
-# Give it a moment to collect it's thoughts for smoother render
+    # Give it a moment to collect it's thoughts for smoother render
     @_timeoutIds.push(setTimeout ( => @_tick() ), 200)
 
   _pauseTimer: ->
-    @_stopTimer()
+    #@_stopTimer()
+    @_cancelTimer()
     @_updateCanvas()
 
-  _stopTimer: ->
+  #_stopTimer: ->
+    #for timeout in @_timeoutIds
+      #clearTimeout timeout
+
+  _cancelTimer: ->
     for timeout in @_timeoutIds
       clearTimeout timeout
 
-  _cancelTimer: ->
-    @_stopTimer()
+    #@_stopTimer()
 
-    if @props.onClick?
-      @refs.component.removeEventListener 'click', @props.onClick
+    #if @props.onClick?
+      #@refs.component.removeEventListener 'click', @props.onClick
 
   _tick: ->
     start = Date.now()
@@ -152,11 +156,12 @@ ReactCountdownClock = CreateReactClass
     if @props.onComplete
       @props.onComplete()
 
-  _clearBackground: ->
-    @_background.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+  #_clearBackground: ->
+    #@_background.clearRect 0, 0, @refs.timer.width, @refs.timer.height
 
   _clearTimer: ->
     @_timer.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+    @_drawBackground()
 
   _clearTimerText: ->
     @_timerText.clearRect 0, 0, @refs.timer.width, @refs.timer.height
@@ -172,7 +177,7 @@ ReactCountdownClock = CreateReactClass
     @_background.fillStyle = @props.backgroundColorEdge
     @_background.arc @_radius, @_radius,      @_radius,           0, Math.PI * 2, false
     @_background.arc @_radius, @_radius, @_innerRadius, Math.PI * 2,           0, true
-    @_background.closePath()
+    @_background.closePath() #remove?
     @_background.fill()
 
   _formattedTime: ->
@@ -215,7 +220,6 @@ ReactCountdownClock = CreateReactClass
     @_icon.fillText('\uF017',67,38)
 
   _drawTimerText: ->
-    percent = @_fraction * @_seconds + 1.5
     formattedTime = @_formattedTime()
     text = if (@props.paused && @props.pausedText?) then @props.pausedText else formattedTime
 
