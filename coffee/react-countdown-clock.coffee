@@ -182,7 +182,8 @@ ReactCountdownClock = CreateReactClass
     @_timer.fill()
 
     # Timer
-    @_timer.globalAlpha = @props.alpha
+    #@_timer.globalAlpha = @props.alpha
+    @_timer.globalAlpha = 1
     @_timer.fillStyle = @props.color
     @_timer.strokeStyle = @props.color
     @_timer.beginPath()
