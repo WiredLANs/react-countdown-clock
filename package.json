@@ -1,6 +1,6 @@
 {
   "name": "react-countdown-clock",
-  "version": "4.9.9",
+  "version": "5.9.9",
   "description": "HTML5 canvas countdown clock React component",
   "main": "build/react-countdown-clock.js",
   "scripts": {
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "create-react-class": "^15.5.2",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.5.10",
     "react-countdown-clock": "^2.0.0"
   }
 }

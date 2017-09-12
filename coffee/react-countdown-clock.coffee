@@ -1,5 +1,5 @@
-React  = require 'react'
-PropTypes = require 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 module.exports = React.createClass
   _seconds: 0
