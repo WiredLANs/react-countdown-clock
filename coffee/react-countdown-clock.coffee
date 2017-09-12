@@ -175,12 +175,6 @@ ReactCountdownClock = CreateReactClass
     formattedTime = @_formattedTime()
     text = if (@props.paused && @props.pausedText?) then @props.pausedText else formattedTime
 
-    # Timer Text
-    @_timer.fillStyle = @props.fontColor or @props.color
-    @_timer.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
-    @_timer.fillText text, @_radius, @_radius
-    @_timer.fill()
-
     # Timer
     #@_timer.globalAlpha = @props.alpha
     @_timer.globalAlpha = 1
@@ -190,6 +184,13 @@ ReactCountdownClock = CreateReactClass
     @_timer.arc @_radius, @_radius, @_radius,      Math.PI * 1.5,     Math.PI * percent, false
     @_timer.arc @_radius, @_radius, @_innerRadius, Math.PI * percent, Math.PI * 1.5,     true
     @_timer.closePath()
+    @_timer.fill()
+
+
+    # Timer Text
+    @_timer.fillStyle = @props.fontColor or @props.color
+    @_timer.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
+    @_timer.fillText text, @_radius, @_radius
     @_timer.fill()
 
   render: ->
