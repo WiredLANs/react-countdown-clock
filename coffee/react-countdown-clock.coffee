@@ -38,12 +38,14 @@ ReactCountdownClock = CreateReactClass
     @_setupCanvases()
     @_drawBackground()
     @_drawIcon()
+    @_drawTimerText()
     @_drawTimer()
     @_startTimer() unless @props.paused
 
   _updateCanvas: ->
     @_clearTimer()
     @_drawTimer()
+    @_drawTimerText()
 
   _setScale: ->
     @_radius      = @props.size / 2
@@ -67,6 +69,11 @@ ReactCountdownClock = CreateReactClass
     @_icon = @refs.background.getContext '2d'
     @_icon.textAlign = 'center'
     @_icon.textBaseline = 'middle'
+
+    @_timerText = @refs.timerText.getContext '2d'
+    @_timerText.textAlign = 'center'
+    @_timerText.textBaseline = 'middle'
+
     @_timer = @refs.timer.getContext '2d'
     @_timer.textAlign = 'center'
     @_timer.textBaseline = 'middle'
@@ -170,21 +177,33 @@ ReactCountdownClock = CreateReactClass
     @_icon.font='32px FontAwesome';
     @_icon.fillText('\uF017',67,30)
 
-  _drawTimer: ->
+  _drawTimerText: ->
     percent = @_fraction * @_seconds + 1.5
     formattedTime = @_formattedTime()
     text = if (@props.paused && @props.pausedText?) then @props.pausedText else formattedTime
 
 
     # Timer Text
-    @_timer.fillStyle = @props.fontColor or @props.color
-    @_timer.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
-    @_timer.fillText text, @_radius, @_radius
-    @_timer.fill()
+    @_timerText.fillStyle = @props.fontColor or @props.color
+    @_timerText.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
+    @_timerText.fillText text, @_radius, @_radius
+    @_timerText.fill()
+
+
+  _drawTimer: ->
+    percent = @_fraction * @_seconds + 1.5
+    #formattedTime = @_formattedTime()
+    #text = if (@props.paused && @props.pausedText?) then @props.pausedText else formattedTime
+
+
+    # Timer Text
+    #@_timer.fillStyle = @props.fontColor or @props.color
+    #@_timer.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
+    #@_timer.fillText text, @_radius, @_radius
+    #@_timer.fill()
 
     # Timer
     #@_timer.globalAlpha = @props.alpha
-    @_timer.fillStyle = 'rgba(0,0,0,0)';
     @_timer.globalAlpha = 1
     @_timer.fillStyle = @props.color
     @_timer.strokeStyle = @props.color
@@ -199,6 +218,7 @@ ReactCountdownClock = CreateReactClass
     <div ref='component' className='react-countdown-clock'>
       <canvas ref='background' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
       <canvas ref='timer' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
+      <canvas ref='timerText' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
       <canvas ref='icon' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
     </div>
 
