@@ -1,8 +1,6 @@
-React  = require 'react'
-PropTypes = require 'prop-types'
 CreateReactClass = require 'create-react-class'
 
-ReactCountdownClock = CreateReactClass
+module.exports = React.createClass
   _seconds: 0
   _radius: null
   _fraction: null
@@ -12,8 +10,38 @@ ReactCountdownClock = CreateReactClass
 
   displayName: 'ReactCountdownClock'
 
-  componentDidUpdate: (props) ->
-    if props.seconds != @props.seconds
+  propTypes:
+    seconds: React.PropTypes.number
+    size: React.PropTypes.number
+    weight: React.PropTypes.number
+    color: React.PropTypes.string
+    fontSize: React.PropTypes.string
+    font: React.PropTypes.string
+    alpha: React.PropTypes.number
+    timeFormat: React.PropTypes.string
+    onComplete: React.PropTypes.func
+    showMilliseconds: PropTypes.bool
+#    paused: PropTypes.bool
+#    pausedText: PropTypes.string
+    backgroundColor: React.PropTypes.string
+    backgroundColorEdge: React.PropTypes.string
+    fontColor: React.PropTypes.string
+    restartOnNewProps: React.PropTypes.bool
+
+  getDefaultProps: ->
+    seconds: 60
+    size: 300
+    color: '#000'
+    alpha: 1
+    timeFormat: 'hms'
+    fontSize: 'auto'
+    font: 'Arial'
+    showMilliseconds: true
+    restartOnNewProps: true
+#    paused: false
+
+  componentWillReceiveProps: (props) ->
+    if @props.restartOnNewProps
       @_seconds = props.seconds
       @_setupTimer()
 
@@ -22,9 +50,9 @@ ReactCountdownClock = CreateReactClass
       @_drawBackground()
       @_updateCanvas()
 
-    if props.paused != @props.paused
-      @_startTimer() if !@props.paused
-      @_pauseTimer() if @props.paused
+#    if props.paused != @props.paused
+#      @_startTimer() if !@props.paused
+#      @_pauseTimer() if @props.paused
 
   componentDidMount: ->
     @_seconds = @props.seconds
@@ -84,9 +112,9 @@ ReactCountdownClock = CreateReactClass
 # Give it a moment to collect it's thoughts for smoother render
     @_timeoutIds.push(setTimeout ( => @_tick() ), 200)
 
-  _pauseTimer: ->
-    @_stopTimer()
-    @_updateCanvas()
+#  _pauseTimer: ->
+#    @_stopTimer()
+#    @_updateCanvas()
 
   _stopTimer: ->
     for timeout in @_timeoutIds
@@ -143,18 +171,14 @@ ReactCountdownClock = CreateReactClass
       minutes = parseInt( @_seconds / 60 ) % 60
       seconds = (@_seconds % 60).toFixed(decimals)
 
-      hoursStr = "#{hours}"
-      minutesStr = "#{minutes}"
-      secondsStr = "#{seconds}"
-
-      hoursStr   = "0#{hours}" if hours < 10
-      minutesStr = "0#{minutes}" if minutes < 10 && hours >= 1
-      secondsStr = "0#{seconds}" if seconds < 10 && (minutes >= 1 || hours >= 1)
+      hours   = "0#{hours}" if hours < 10
+      minutes = "0#{minutes}" if minutes < 10
+      seconds = "0#{seconds}" if seconds < 10 && minutes >= 1
 
       timeParts = []
-      timeParts.push hoursStr if hours > 0
-      timeParts.push minutesStr if minutes > 0 || hours > 0
-      timeParts.push secondsStr
+      timeParts.push hours if hours > 0
+      timeParts.push minutes if minutes > 0
+      timeParts.push seconds
 
       timeParts.join ':'
     else
@@ -222,34 +246,3 @@ ReactCountdownClock = CreateReactClass
       <canvas ref='timerText' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
       <canvas ref='icon' style={ position: 'absolute' } width={@props.size} height={@props.size}></canvas>
     </div>
-
-ReactCountdownClock.propTypes =
-  seconds: PropTypes.number
-  size: PropTypes.number
-  weight: PropTypes.number
-  color: PropTypes.string
-  fontSize: PropTypes.string
-  font: PropTypes.string
-  alpha: PropTypes.number
-  timeFormat: PropTypes.string
-  onComplete: PropTypes.func
-  onClick: PropTypes.func
-  showMilliseconds: PropTypes.bool
-  paused: PropTypes.bool
-  pausedText: PropTypes.string
-  backgroundColor: React.PropTypes.string
-  backgroundColorEdge: React.PropTypes.string
-  fontColor: React.PropTypes.string
-
-ReactCountdownClock.defaultProps =
-  seconds: 60
-  size: 300
-  color: '#000'
-  alpha: 1
-  timeFormat: 'hms'
-  fontSize: 'auto'
-  font: 'Arial'
-  showMilliseconds: true
-  paused: false
-
-module.exports = ReactCountdownClock
