@@ -162,14 +162,21 @@ ReactCountdownClock = CreateReactClass
       @props.fontSize
 
   _drawIcon: ->
-    @_icon.clearRect(47,0,@props.size,@props.size);
-    @_icon.font='34px FontAwesome #ffffff';
+    @_icon.clearRect(47,0,50,50);
+    @_icon.fillStyle = @props.fontColor or @props.color
+    @_icon.font='34px FontAwesome';
     @_icon.fillText('\uF017',20,50)
 
   _drawTimer: ->
     percent = @_fraction * @_seconds + 1.5
     formattedTime = @_formattedTime()
     text = if (@props.paused && @props.pausedText?) then @props.pausedText else formattedTime
+
+    # Timer Text
+    @_timer.fillStyle = @props.fontColor or @props.color
+    @_timer.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
+    @_timer.fillText text, @_radius, @_radius
+    @_timer.fill()
 
     # Timer
     @_timer.globalAlpha = @props.alpha
@@ -178,12 +185,6 @@ ReactCountdownClock = CreateReactClass
     @_timer.arc @_radius, @_radius, @_radius,      Math.PI * 1.5,     Math.PI * percent, false
     @_timer.arc @_radius, @_radius, @_innerRadius, Math.PI * percent, Math.PI * 1.5,     true
     @_timer.closePath()
-    @_timer.fill()
-
-    # Timer Text
-    @_timer.fillStyle = @props.fontColor or @props.color
-    @_timer.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
-    @_timer.fillText text, @_radius, @_radius
     @_timer.fill()
 
   render: ->
