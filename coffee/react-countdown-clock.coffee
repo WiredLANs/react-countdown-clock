@@ -1,4 +1,4 @@
-CreateReactClass = require 'create-react-class'
+React  = require 'react'
 
 module.exports = React.createClass
   _seconds: 0
