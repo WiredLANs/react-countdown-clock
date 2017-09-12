@@ -75,7 +75,7 @@ ReactCountdownClock = CreateReactClass
   _updateCanvas: ->
     @_clearTimer()
     @_drawTimer()
-    @_clearTimerText()
+    #@_clearTimerText()
     @_drawTimerText()
     @_clearIcon()
     @_drawIcon()
