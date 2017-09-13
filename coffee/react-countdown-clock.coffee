@@ -169,11 +169,11 @@ ReactCountdownClock = CreateReactClass
     @_drawBackground()
 
   _clearTimerText: ->
-    #@_timerText.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+    @_timerText.clearRect 0, 0, @refs.timerText.width, @refs.timerText.height
     @_timerText.fillText ' ', @_radius, 79
 
   _clearIcon: ->
-    #@_icon.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+    @_icon.clearRect 0, 0, @refs.icon.width, @refs.icon.height
     @_icon.fillText(' ',67,38)
 
   _drawBackground: ->
