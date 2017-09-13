@@ -165,7 +165,8 @@ ReactCountdownClock = CreateReactClass
     #@_background.clearRect 0, 0, @refs.timer.width, @refs.timer.height
 
   _clearTimer: ->
-    @_timer.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+    #@_timer.clearRect 0, 0, @refs.timer.width, @refs.timer.height
+    @_timer.clearRect 0, 0, @props.size, @props.size
     @_drawBackground()
 
   _clearTimerText: ->
