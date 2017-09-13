@@ -141,6 +141,9 @@ ReactCountdownClock = CreateReactClass
       duration = (Date.now() - start) / 1000
       @_seconds -= duration
 
+      console.log {'seconds='}
+      console.log @_seconds
+
       if @_seconds <= 0
         @_seconds = 0
         @_handleComplete()
