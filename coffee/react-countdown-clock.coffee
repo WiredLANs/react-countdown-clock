@@ -146,6 +146,9 @@ ReactCountdownClock = CreateReactClass
       console.log {'seconds='}
       console.log @_seconds
 
+      console.log {'tickPeriod='}
+      console.log @_tickPeriod
+
       if @_seconds <= 0
         @_seconds = 0
         @_handleComplete()
