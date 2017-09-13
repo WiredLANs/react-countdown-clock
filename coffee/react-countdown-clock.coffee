@@ -10,6 +10,18 @@ ReactCountdownClock = CreateReactClass
   _canvas: null
   _timeoutIds: []
 
+  defaultProps: ->
+  seconds: 60
+  size: 300
+  color: '#000'
+  alpha: 1
+  timeFormat: 'hms'
+  fontSize: 'auto'
+  font: 'Arial'
+  showMilliseconds: true
+  restartOnNewProps: true
+  paused: false
+
   displayName: 'ReactCountdownClock'
 
   propTypes:
@@ -30,17 +42,7 @@ ReactCountdownClock = CreateReactClass
     fontColor: React.PropTypes.string
     restartOnNewProps: React.PropTypes.bool
 
-  getDefaultProps: ->
-    seconds: 60
-    size: 300
-    color: '#000'
-    alpha: 1
-    timeFormat: 'hms'
-    fontSize: 'auto'
-    font: 'Arial'
-    showMilliseconds: true
-    restartOnNewProps: true
-    paused: false
+  #getDefaultProps: ->
 
   componentWillReceiveProps: (props) ->
     if @props.restartOnNewProps
