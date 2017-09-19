@@ -34,6 +34,7 @@ ReactCountdownClock = CreateReactClass
     alpha: React.PropTypes.number
     timeFormat: React.PropTypes.string
     onComplete: React.PropTypes.func
+    onTick: React.PropTypes.func
     showMilliseconds: PropTypes.bool
     paused: PropTypes.bool
     pausedText: PropTypes.string
@@ -146,11 +147,14 @@ ReactCountdownClock = CreateReactClass
       duration = (Date.now() - start) / 1000
       @_seconds -= duration
 
-      console.log {'seconds='}
-      console.log @_seconds
+      #console.log {'seconds='}
+      #console.log @_seconds
 
-      console.log {'tickPeriod='}
-      console.log @_tickPeriod
+      if @props.onTick
+        @props.onTick(@_seconds)
+
+      #console.log {'tickPeriod='}
+      #console.log @_tickPeriod
 
       if @_seconds <= 0
         @_seconds = 0
