@@ -234,7 +234,7 @@ ReactCountdownClock = CreateReactClass
     @_icon.clearRect(80,0,0,0);
     @_icon.globalAlpha = 1
     @_icon.fillStyle = @props.fontColor or @props.color
-    @_icon.font='24px FontAwesome'
+    @_icon.font='27px FontAwesome'
     @_icon.fillText('\uF017',50,29)
 
   _drawTimerText: ->
