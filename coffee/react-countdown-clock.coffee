@@ -245,7 +245,7 @@ ReactCountdownClock = CreateReactClass
     # Timer Text
     @_timerText.fillStyle = @props.fontColor or @props.color
     @_timerText.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
-    @_timerText.fillText text, @_radius, 59
+    @_timerText.fillText text, @_radius, 62
     @_timerText.fill()
 
 
