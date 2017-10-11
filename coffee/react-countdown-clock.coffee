@@ -181,11 +181,11 @@ ReactCountdownClock = CreateReactClass
 
   _clearTimerText: ->
     @_timerText.clearRect 0, 0, @props.size, @props.size
-    @_timerText.fillText ' ', @_radius, 79
+    @_timerText.fillText ' ', @_radius, 59
 
   _clearIcon: ->
     @_icon.clearRect 0, 0, @props.size, @props.size
-    @_icon.fillText(' ',67,38)
+    @_icon.fillText(' ',50,29)
 
   _drawBackground: ->
     @_background.beginPath()
@@ -231,11 +231,11 @@ ReactCountdownClock = CreateReactClass
       @props.fontSize
 
   _drawIcon: ->
-    @_icon.clearRect(107,0,0,0);
+    @_icon.clearRect(80,0,0,0);
     @_icon.globalAlpha = 1
     @_icon.fillStyle = @props.fontColor or @props.color
-    @_icon.font='32px FontAwesome'
-    @_icon.fillText('\uF017',67,38)
+    @_icon.font='24px FontAwesome'
+    @_icon.fillText('\uF017',50,29)
 
   _drawTimerText: ->
     formattedTime = @_formattedTime()
@@ -245,7 +245,7 @@ ReactCountdownClock = CreateReactClass
     # Timer Text
     @_timerText.fillStyle = @props.fontColor or @props.color
     @_timerText.font = "normal #{@_fontSize(formattedTime)} #{@props.font}"
-    @_timerText.fillText text, @_radius, 79
+    @_timerText.fillText text, @_radius, 59
     @_timerText.fill()
 
 
