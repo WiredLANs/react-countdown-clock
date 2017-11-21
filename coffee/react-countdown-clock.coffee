@@ -46,7 +46,7 @@ ReactCountdownClock = CreateReactClass
   #getDefaultProps: ->
 
   componentWillReceiveProps: (props) ->
-    if @props.restartOnNewProps
+    if @props.restartOnNewProps or (props.paused != @props.paused && !@props.paused)
       @_seconds = props.seconds
       @_cancelTimer()
       @_updateCanvas()
