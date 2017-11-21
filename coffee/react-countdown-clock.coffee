@@ -162,9 +162,10 @@ ReactCountdownClock = CreateReactClass
         @_clearTimer()
         @_clearTimerText()
         @_clearIcon()
-      else if !@props.paused
+      else
         @_updateCanvas()
-        @_tick()
+        if !@props.paused
+          @_tick()
     ), @_tickPeriod)
 
   _handleComplete: ->
