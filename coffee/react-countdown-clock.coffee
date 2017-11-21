@@ -126,7 +126,7 @@ ReactCountdownClock = CreateReactClass
   _pauseTimer: ->
     #@_stopTimer()
     @_cancelTimer()
-    #@_updateCanvas()
+    @_updateCanvas()
 
   #_stopTimer: ->
     #for timeout in @_timeoutIds
