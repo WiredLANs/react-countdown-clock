@@ -36,8 +36,8 @@ ReactCountdownClock = CreateReactClass
     onComplete: React.PropTypes.func
     onTick: React.PropTypes.func
     showMilliseconds: PropTypes.bool
-    paused: PropTypes.bool
-    pausedText: PropTypes.string
+    paused: React.PropTypes.bool
+    pausedText: React.PropTypes.string
     backgroundColor: React.PropTypes.string
     backgroundColorEdge: React.PropTypes.string
     fontColor: React.PropTypes.string
